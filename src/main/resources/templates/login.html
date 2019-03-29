@@ -4,6 +4,8 @@
 
 <head th:include="shared/common :: head"/>
 <body>
+<!-- Navigation -->
+<div th:replace="shared/common :: navbar"/>
 <div class="container">
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -27,8 +29,8 @@
                         </div>
                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button>
                         <hr class="my-4">
-                        <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i>Back Home</button>
-                        <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i>Make an account</button>
+                        <a th:href="@{/}" class="btn btn-lg btn-google btn-block text-uppercase" type="submit">Back Home</a>
+                        <a th:href="@{/register}" class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit">Make an account</a>
                     </form>
                 </div>
             </div>

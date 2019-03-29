@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="shared/common :: head"/>
+
+<body>
+
+<!-- Navigation -->
+<div th:replace="shared/common :: navbar"/>
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-3" th:include="shared/common :: sidebar"/>
+
+        <!--Display the products-->
+        <div class="col-lg-9">
+            <!--Added breadcrumb component-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <th:block th:if="${userClickAllProducts == true}">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+                            <li class="breadcrumb-item active">All Products</li>
+                        </ol>
+                    </th:block>
+                    <th:block th:if="${UserClickCategoryProducts == true}">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+                            <li class="breadcrumb-item active">Category</li>
+                            <li class="breadcrumb-item active" th:text="${category.name}"></li>
+                        </ol>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+</div>
+
+    <!-- Footer -->
+    <div th:include="shared/common :: footer"/>
+
+</body>
+
+</html>
