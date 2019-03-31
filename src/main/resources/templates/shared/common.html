@@ -32,20 +32,20 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav m1-auto">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/show/all/products}">Products</a>
+                        <a class="nav-link" id="products" th:href="@{/show/all/products}">Products</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home
+                    <li class="nav-item">
+                        <a class="nav-link" id="home" th:href="@{/}">Home
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" id="about" href="#">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" id="contact" href="#">Contact</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/login}">Login</a>
@@ -85,6 +85,9 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!--Custom JS file-->
+    <script src="../static/js/custom.js"></script>
+
 </div>
 
 </html>
