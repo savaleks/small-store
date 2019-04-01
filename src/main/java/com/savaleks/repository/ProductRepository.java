@@ -4,7 +4,6 @@ import com.savaleks.model.Product;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,7 +19,7 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
     @Query("SELECT t FROM Product t WHERE t.active = 0 AND t.categoryId = :id")
     public List<Product> listActiveProductsByCategory(int id);
 
-//    @Query(value = "SELECT u FROM Product WHERE active = 'true' ORDER BY id")
+//    @Query(value = "SELECT u FROM Product WHERE active = 0 ORDER BY id")
 //    public List<Product> getLatestActiveProducts(@Param("id") int count);
 
 }

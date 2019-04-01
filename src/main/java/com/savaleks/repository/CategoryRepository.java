@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface CategoryRepository extends CrudRepository<Category, Integer> {
 
-    @Query("SELECT t FROM Category t WHERE t.active = 'true'")
+    @Query("SELECT t FROM Category t WHERE t.active = 1")
     public List<Category> getAllByActive();
 }

@@ -1,6 +1,7 @@
 package com.savaleks.controller;
 
 import com.savaleks.model.Category;
+import com.savaleks.repository.CategoryRepository;
 import com.savaleks.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,9 @@ public class MainController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @GetMapping("/")
     public String homePage(Model model){
