@@ -12,12 +12,13 @@ import java.util.List;
 public interface ProductRepository extends CrudRepository<Product, Integer> {
 
     // JPQL query to fetch the all active products
-    @Query("SELECT t FROM Product t WHERE t.active = :active")
+    @Query("SELECT t FROM Product t WHERE t.active = 0")
     public List<Product> listActiveProducts();
 
-    @Query("SELECT t FROM Product t WHERE t.active = 'true' AND categoryId = :categoryId")
+    @Query("SELECT t FROM Product t WHERE t.active = 0 AND t.categoryId = 1")
     public List<Product> listActiveProductsByCategory(@Param("categoryId") int categoryId);
 
 //    @Query(value = "SELECT u FROM Product WHERE active = 'true' ORDER BY id")
 //    public List<Product> getLatestActiveProducts(@Param("id") int count);
+
 }
