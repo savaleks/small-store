@@ -1,6 +1,7 @@
 package com.savaleks.repository;
 
 import com.savaleks.model.Product;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -11,12 +12,13 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Integer> {
 
-    // JPQL query to fetch the all active products
+    // Queries to fetch the all active products
     @Query("SELECT t FROM Product t WHERE t.active = 0")
     public List<Product> listActiveProducts();
 
-    @Query("SELECT t FROM Product t WHERE t.active = 0 AND t.categoryId = 1")
-    public List<Product> listActiveProductsByCategory(@Param("categoryId") int categoryId);
+    @Modifying
+    @Query("SELECT t FROM Product t WHERE t.active = 0 AND t.categoryId = :id")
+    public List<Product> listActiveProductsByCategory(int id);
 
 //    @Query(value = "SELECT u FROM Product WHERE active = 'true' ORDER BY id")
 //    public List<Product> getLatestActiveProducts(@Param("id") int count);

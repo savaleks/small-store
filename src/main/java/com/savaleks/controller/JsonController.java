@@ -26,7 +26,7 @@ public class JsonController {
 
     @GetMapping("/category/{id}/products")
     @ResponseBody
-    public List<Product> getAllProductsByCategory(@PathVariable("id") int id){
+    public List<Product> getAllProductsByCategory(@PathVariable int id){
 
         return productRepository.listActiveProductsByCategory(id);
     }

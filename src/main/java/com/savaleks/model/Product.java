@@ -1,5 +1,7 @@
 package com.savaleks.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -13,15 +15,19 @@ public class Product {
     private String code;
     private String name;
     private String brand;
+    @JsonIgnore
     private String description;
     @Column(name = "unit_price")
     private BigDecimal unitPrice;
     private int quantity;
     @Column(name = "is_active")
+    @JsonIgnore
     private boolean active;
     @Column(name = "category_id")
+    @JsonIgnore
     private int categoryId;
     @Column(name = "supplier_id")
+    @JsonIgnore
     private int supplierId;
     private int purchases;
     private int views;
