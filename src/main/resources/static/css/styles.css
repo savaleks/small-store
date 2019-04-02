@@ -108,3 +108,8 @@ body {
     color: white;
     background-color: #3b5998;
 }
+
+.dataTableImg {
+    width: 100px;
+    height: 100px;
+}
