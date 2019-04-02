@@ -1,8 +1,10 @@
 package com.savaleks.controller;
 
 import com.savaleks.model.Category;
+import com.savaleks.model.Product;
 import com.savaleks.repository.CategoryRepository;
 import com.savaleks.service.CategoryService;
+import com.savaleks.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,9 @@ public class MainController {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ProductService productService;
 
     @GetMapping("/")
     public String homePage(Model model){
@@ -51,7 +56,20 @@ public class MainController {
         model.addAttribute("UserClickCategoryProducts", true);
 
         return "product-list";
+    }
 
+    // View a single product
+
+    @GetMapping("/show/{id}/product")
+    public String showSingleProduct(@PathVariable int id, Model model){
+        Product product = productService.get(id);
+
+        // update the view count
+        model.addAttribute(product.getViews() + 1);
+        productService.update(product);
+
+        model.addAttribute("product", product);
+        return "single-product";
     }
 
 }

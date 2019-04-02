@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="shared/common :: head"/>
+
+<body>
+
+<!-- Navigation -->
+<div th:replace="shared/common :: navbar"/>
+
+<!-- Page Content -->
+<div class="container" style="padding-top: 10px;">
+
+    <!-- Breadcrumb -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/show/all/products}">Products</a></li>
+                <li class="breadcrumb-item active" th:text="${product.name}"></li>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Display product image -->
+        <div class="col-xs-12 col-sm-4">
+            <div class="thumbnail">
+                <img th:src="@{'/images/' + ${product.code} + '.jpg'}" class="img-fluid"/>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-8">
+            <h3 th:text="${product.name}"></h3>
+            <hr/>
+            <p th:text="${product.description}"></p>
+            <hr/>
+            <h4>Price: &#8364;<strong th:text="${product.unitPrice}"></strong></h4>
+            <hr/>
+            <h6>Qty. Available: <span th:text="${product.quantity}"></span></h6>
+            <a th:href="@{'/cart/add/' + ${product.id} + '/product'}" class="btn btn-success">Add to Cart</a>
+            <a th:href="@{/show/all/products}" class="btn btn-success">Back</a>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
