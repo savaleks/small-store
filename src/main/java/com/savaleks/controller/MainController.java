@@ -20,9 +20,6 @@ public class MainController {
     private CategoryService categoryService;
 
     @Autowired
-    private CategoryRepository categoryRepository;
-
-    @Autowired
     private ProductService productService;
 
     @GetMapping("/")
@@ -61,7 +58,7 @@ public class MainController {
     // View a single product
 
     @GetMapping("/show/{id}/product")
-    public String showSingleProduct(@PathVariable int id, Model model){
+    public String showSingleProduct(@PathVariable("id") int id, Model model) {
         Product product = productService.get(id);
 
         // update the view count
