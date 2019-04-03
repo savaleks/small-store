@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="shared/common :: head"/>
+
+<body>
+
+<!-- Navigation -->
+<div th:replace="shared/common :: navbar"/>
+
+<div class="container" style="padding-top: 10px;">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Product Management</h4>
+                </div>
+                <div class="card-body">
+                    <!-- Form element -->
+                    <form method="post" th:object="${product}" th:action="@{/manage/products}">
+                        <div class="form-group">
+                            <label for="name">Enter Product Name:</label>
+                            <div>
+                                <input th:value="*{name}" type="text" name="name" id="name" placeholder="Product Name" class="form-control">
+<!--                                <em class="help-block">Please enter Product Name</em>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="brand">Enter Brand Name:</label>
+                            <div>
+                                <input th:value="*{brand}" type="text" name="brand" id="brand" placeholder="Brand Name" class="form-control">
+<!--                                <em class="help-block">Please enter Brand Name</em>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Product Description:</label>
+                            <div>
+                                <textarea th:value="*{description}" rows="4" name="description" id="description" class="form-control"></textarea>
+<!--                                <em class="help-block">Please enter Description</em>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="unitPrice">Enter Unit Price:</label>
+                            <div>
+                                <input th:value="*{unitPrice}" type="number" name="unitPrice" id="unitPrice" placeholder="Unit Price in &#8364;" class="form-control">
+<!--                                <em class="help-block">Please enter Unit Price</em>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity Available:</label>
+                            <div>
+                                <input th:value="*{quantity}" type="number" name="quantity" id="quantity" placeholder="Quantity Available" class="form-control">
+<!--                                <em class="help-block">Please enter Quantity</em>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="categoryId">Select Category:</label>
+                            <div>
+                                <select name="categoryId" id="categoryId" class="form-control" th:field="*{categoryId}">
+                                    <option th:each="category : ${categories}"
+                                            th:value="${category.id}"
+                                            th:text="${category.name}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary">
+                                <!-- Hidden fields for products -->
+                                <input type="hidden" th:value="${product.id}"/>
+                                <input type="hidden" th:value="${product.code}"/>
+                                <input type="hidden" th:value="${product.supplierId}"/>
+                                <input type="hidden" th:value="${product.active}"/>
+                                <input type="hidden" th:value="${product.purchases}"/>
+                                <input type="hidden" th:value="${product.views}"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+</body>
+</html>
