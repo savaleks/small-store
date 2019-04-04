@@ -28,8 +28,7 @@ public class Product {
     private BigDecimal unitPrice;
     private int quantity;
     @Column(name = "is_active")
-    @JsonIgnore
-    private boolean active;
+    private boolean active = true;
     @Column(name = "category_id")
     @JsonIgnore
     private int categoryId;

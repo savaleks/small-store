@@ -51,4 +51,100 @@ $(document).ready(function () {
             }, 3000)
         }
 
+    // bootbox for activate and deactivate button
+    $('.switch input[type="checkbox"]').on('change', function () {
+       var checkbox = $(this);
+       var checked = checkbox.prop('checked');
+       var dMsg = (checked)?'Do you want activate the product?':'Do you want deactivate the product?';
+       var value = checkbox.prop('value');
+
+       bootbox.confirm({
+          size: 'medium',
+          title: 'Product Activation and Deactivation',
+          message: dMsg,
+          callback: function (confirmed) {
+              if (confirmed){
+                  bootbox.alert({
+                      size: 'medium',
+                      title: 'Information',
+                      message: 'You want perform operation on product ' + value
+                  });
+              } else {
+                  checkbox.prop('checked', !checked);
+              }
+          }
+       });
+    });
+
+    // DataTable for admin
+    var jsonUrl = /*[[@{/json/data/admin/all/products}]]*/ '/json/data/admin/all/products';
+
+    var adminProductsTable = $('#adminProductsTable').DataTable({
+        lengthMenu: [[10, 20, 50, -1], ['10', '20', '50', 'ALL']],
+        pageLength: 10,
+        ajax: {url: jsonUrl, dataSrc: ''},
+        columns:[
+            {data: "id"},
+            {data: "code", mRender: function (data, type, row) {
+                    return '<img src="/images/'+data+'.jpg" class="adminDataTableImg"/>'
+                }},
+            {data: "name"},
+            {data: "brand"},
+            {data: "quantity", mRender: function (data, type, row) {
+                    if (data < 1){
+                        return '<span style="color:red;">Out of Stock</span>';
+                    }
+                    return data;
+                }},
+            {data: "unitPrice", mRender: function (data, type, row) {
+                    return '&#8364; ' + data
+                }},
+            {data: "active", bSortable: false, mRender: function (data, type, row) {
+                    var str = '';
+                    str += '<label class="switch">';
+                    if (data){
+                        str += '<input type="checkbox" checked="checked" value="'+row.id+'">';
+                    }
+                    else {
+                        str += '<input type="checkbox" value="'+row.id+'">';
+                    }
+                    str += '<div class="slider"></div></label>';
+                    return str;
+                }
+                },
+            {data: 'id', bSortable: false, mRender: function (data, type, row) {
+                    var str = '';
+                    str += '<a href="/manage/'+data+'/product" class="btn btn-link">';
+                    str += '<i class="fa fa-pencil-square-o fa-2x"></i></a>';
+                    return str;
+                }}
+        ],
+
+        initComplete: function () {
+            var api = this.api();
+            api.$('.switch input[type="checkbox"]').on('change', function () {
+                var checkbox = $(this);
+                var checked = checkbox.prop('checked');
+                var dMsg = (checked)?'Do you want activate the product?':'Do you want deactivate the product?';
+                var value = checkbox.prop('value');
+
+                bootbox.confirm({
+                    size: 'medium',
+                    title: 'Product Activation and Deactivation',
+                    message: dMsg,
+                    callback: function (confirmed) {
+                        if (confirmed){
+                            bootbox.alert({
+                                size: 'medium',
+                                title: 'Information',
+                                message: 'You want perform operation on product ' + value
+                            });
+                        } else {
+                            checkbox.prop('checked', !checked);
+                        }
+                    }
+                });
+            });
+        }
+    });
 });

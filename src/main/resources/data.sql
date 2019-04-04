@@ -6,11 +6,11 @@ INSERT INTO user(email, is_enabled, first_name, last_name, password, role, usern
 values ('al@mail.com',0,'alex','adam', '123', 'SUPPLIER', 'alex123', CURRENT_TIMESTAMP(),'132412412');
 
 INSERT INTO product(is_active, brand, category_id, code, description, name, purchases, quantity, supplier_id, unit_price, views)
-values (0,'sony', '1','wf2342','some text','sony Nano','3','55','2','400.87',0);
+values (1,'sony', '1','wf2342','some text','sony Nano','3','55','2','400.87',0);
 INSERT INTO product(is_active, brand, category_id, code, description, name, purchases, quantity, supplier_id, unit_price, views)
-values (0,'mitsubishi', '1','wf2342','some text','hitachi','0','51','2','410.87',0);
+values (1,'mitsubishi', '1','wf2342','some text','hitachi','0','51','2','410.87',0);
 INSERT INTO product(is_active, brand, category_id, code, description, name, purchases, quantity, supplier_id, unit_price, views)
-values (0,'LG', '2','wf2ew42','some text','lg micro','0','17','3','250.87',0);
+values (1,'LG', '2','wf2ew42','some text','lg micro','0','17','3','250.87',0);
 INSERT INTO product(is_active, brand, category_id, code, description, name, purchases, quantity, supplier_id, unit_price, views)
 values (1,'sharp', '3','w342','some text','sharp kugo','0','15','2','440.87',0);
 INSERT INTO product(is_active, brand, category_id, code, description, name, purchases, quantity, supplier_id, unit_price, views)

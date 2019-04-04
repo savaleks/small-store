@@ -24,6 +24,12 @@ public class JsonController {
         return productRepository.listActiveProducts();
     }
 
+    @GetMapping("/admin/all/products")
+    @ResponseBody
+    public List<Product> getAllAdminProducts(){
+        return (List<Product>) productRepository.findAll();
+    }
+
     @GetMapping("/category/{id}/products")
     @ResponseBody
     public List<Product> getAllProductsByCategory(@PathVariable("id") int id){

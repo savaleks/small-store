@@ -5,6 +5,7 @@ import com.savaleks.model.Product;
 import com.savaleks.service.CategoryService;
 import com.savaleks.service.ProductService;
 import com.savaleks.utility.FileUploadUtility;
+import com.savaleks.validator.ProductValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,10 @@ public class ManageController {
     @PostMapping("/products")
     public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct,
                                           BindingResult result, Model model, HttpServletRequest request){
+
+        new ProductValidator().validate(mProduct, result);
+
+
 
         // check if the form have error
         if (result.hasErrors()){
