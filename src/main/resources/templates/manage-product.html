@@ -27,33 +27,33 @@
                 </div>
                 <div class="card-body">
                     <!-- Form element -->
-                    <form method="post" th:object="${product}" th:action="@{/manage/products}">
+                    <form method="post" th:object="${product}" th:action="@{/manage/products}" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="name">Enter Product Name:</label>
                             <div>
                                 <input th:value="*{name}" type="text" name="name" id="name" placeholder="Product Name" class="form-control">
-<!--                                <em class="help-block">Please enter Product Name</em>-->
+                                <p class="help-block" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="brand">Enter Brand Name:</label>
                             <div>
                                 <input th:value="*{brand}" type="text" name="brand" id="brand" placeholder="Brand Name" class="form-control">
-<!--                                <em class="help-block">Please enter Brand Name</em>-->
+                                <p class="help-block" th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}">Brand Error</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="description">Product Description:</label>
                             <div>
                                 <textarea th:value="*{description}" rows="4" name="description" id="description" class="form-control"></textarea>
-<!--                                <em class="help-block">Please enter Description</em>-->
+                                <p class="help-block" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="unitPrice">Enter Unit Price:</label>
                             <div>
                                 <input th:value="*{unitPrice}" type="number" name="unitPrice" id="unitPrice" placeholder="Unit Price in &#8364;" class="form-control">
-<!--                                <em class="help-block">Please enter Unit Price</em>-->
+                                <p class="help-block" th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}">Description Error</p>
                             </div>
                         </div>
                         <div class="form-group">
@@ -61,6 +61,12 @@
                             <div>
                                 <input th:value="*{quantity}" type="number" name="quantity" id="quantity" placeholder="Quantity Available" class="form-control">
 <!--                                <em class="help-block">Please enter Quantity</em>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="file">Select an Image:</label>
+                            <div>
+                                <input th:value="*{file}" type="file" name="file" id="file" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">

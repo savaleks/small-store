@@ -2,7 +2,6 @@ package com.savaleks.controller;
 
 import com.savaleks.model.Category;
 import com.savaleks.model.Product;
-import com.savaleks.repository.CategoryRepository;
 import com.savaleks.service.CategoryService;
 import com.savaleks.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
