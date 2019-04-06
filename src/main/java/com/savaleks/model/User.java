@@ -1,6 +1,7 @@
 package com.savaleks.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,15 +17,23 @@ public class User implements Serializable {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+    @NotBlank(message = "Please enter username")
     private String username;
+    @NotBlank(message = "Please enter password")
     private String password;
+    @NotBlank(message = "Please enter email")
     private String email;
+    @NotBlank(message = "Please enter role")
     private String role;
     @Column(name = "is_enabled")
     private boolean enabled = true;
     @Column(name = "contact_number")
     private String contactNumber;
     private Date date = new Date();
+
+    // confirm password transient field
+    @Transient
+    private String confirmPassword;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Cart cart;
@@ -35,6 +44,14 @@ public class User implements Serializable {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public Long getId() {

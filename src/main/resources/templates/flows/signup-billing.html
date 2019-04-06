@@ -24,26 +24,31 @@
                         <div class="form-label-group">
                             <input type="text" id="inputAddressLine" class="form-control" th:field="*{addressLine}" placeholder="Address Line">
                             <label for="inputAddressLine">Address Line</label>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('addressLine')}" th:errors="*{addressLine}"></small>
                         </div>
 
                         <div class="form-label-group">
                             <input type="text" id="inputCity" class="form-control" th:field="*{city}" placeholder="City">
                             <label for="inputCity">City</label>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></small>
                         </div>
 
                         <div class="form-label-group">
                             <input type="text" id="inputState" class="form-control" th:field="*{state}" placeholder="State">
                             <label for="inputState">State</label>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('state')}" th:errors="*{state}"></small>
                         </div>
 
                         <div class="form-label-group">
                             <input type="text" id="inputCountry" class="form-control" th:field="*{country}" placeholder="Country">
                             <label for="inputCountry">Country</label>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></small>
                         </div>
 
                         <div class="form-label-group">
                             <input type="text" id="inputPostcode" class="form-control" th:field="*{postcode}" placeholder="Postcode">
                             <label for="inputPostcode">Postcode</label>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('postcode')}" th:errors="*{postcode}"></small>
                         </div>
 
                         <hr>

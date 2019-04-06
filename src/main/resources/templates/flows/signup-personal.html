@@ -22,41 +22,48 @@
 
                         <!--add required if need validation-->
                         <div class="form-label-group">
-                            <input type="text" id="inputUsername" class="form-control" th:field="*{username}" placeholder="Username">
+                            <input type="text" id="inputUsername" class="form-control" th:field="*{username}" placeholder="Username" >
                             <label for="inputUsername">Username</label>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
                         </div>
 
                         <div class="form-label-group">
                             <input type="text" id="inputFirstName" class="form-control" th:field="*{firstName}" placeholder="First Name">
                             <label for="inputFirstName">First Name</label>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></small>
                         </div>
 
                         <div class="form-label-group">
                             <input type="text" id="inputLastName" class="form-control" th:field="*{lastName}" placeholder="Last Name">
                             <label for="inputLastName">Last Name</label>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></small>
                         </div>
 
                         <div class="form-label-group">
-                            <input type="email" id="inputEmail" class="form-control" th:field="*{email}" placeholder="Email address">
+                            <input type="email" id="inputEmail" class="form-control" th:field="*{email}" placeholder="Email address" >
                             <label for="inputEmail">Email address</label>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
                         </div>
 
                         <div class="form-label-group">
                             <input type="number" id="inputPhone" class="form-control" th:field="*{contactNumber}" placeholder="Phone Number">
                             <label for="inputPhone">Phone Number</label>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('contactNumber')}" th:errors="*{contactNumber}"></small>
                         </div>
 
                         <hr>
 
                         <div class="form-label-group">
-                            <input type="password" id="inputPassword" class="form-control" placeholder="Password">
+                            <input type="password" id="inputPassword" th:field="*{password}" class="form-control" placeholder="Password" >
                             <label for="inputPassword">Password</label>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
                         </div>
 
-<!--                        <div class="form-label-group">-->
-<!--                            <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>-->
-<!--                            <label for="inputConfirmPassword">Confirm password</label>-->
-<!--                        </div>-->
+                        <div class="form-label-group">
+                            <input th:field="*{confirmPassword}" type="password" class="form-control" id="confirmPassword" placeholder="Re-enter password" />
+                            <label for="confirmPassword">Confirm password</label>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></small>
+                        </div>
 
                         <div class="form-label-group">
                             <div class="control-label">
@@ -66,6 +73,7 @@
                                 <label class="radio-inline">
                                     <input type="radio" th:field="*{role}" value="SUPPLIER"> Supplier
                                 </label>
+                                <small class="form-text text-danger" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></small>
                             </div>
                         </div>
 
