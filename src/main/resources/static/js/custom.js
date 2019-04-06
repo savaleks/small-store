@@ -59,13 +59,13 @@ $(document).ready(function () {
        var value = checkbox.prop('value');
 
        bootbox.confirm({
-          size: 'medium',
+          size: 'small',
           title: 'Product Activation and Deactivation',
           message: dMsg,
           callback: function (confirmed) {
               if (confirmed){
                   bootbox.alert({
-                      size: 'medium',
+                      size: 'small',
                       title: 'Information',
                       message: 'You want perform operation on product ' + value
                   });
@@ -75,6 +75,10 @@ $(document).ready(function () {
           }
        });
     });
+
+    //====================
+
+    //===================
 
     // DataTable for admin
     var jsonUrl = /*[[@{/json/data/admin/all/products}]]*/ '/json/data/admin/all/products';
@@ -134,10 +138,13 @@ $(document).ready(function () {
                     message: dMsg,
                     callback: function (confirmed) {
                         if (confirmed){
-                            bootbox.alert({
-                                size: 'medium',
-                                title: 'Information',
-                                message: 'You want perform operation on product ' + value
+                            var activationUrl = /*[[@{/manage/product/{id}/activation]]*/ '/manage/product/'+value+'/activation';
+                            $.post(activationUrl, function (data) {
+                                bootbox.alert({
+                                    size: 'medium',
+                                    title: 'Information',
+                                    message: data
+                                });
                             });
                         } else {
                             checkbox.prop('checked', !checked);

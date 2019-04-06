@@ -21,6 +21,7 @@ public class FileUploadUtility {
         // get real path
         RELATIVE_PATH = request.getSession().getServletContext().getRealPath("/tmp/images/");
         LOGGER.info(RELATIVE_PATH);
+        LOGGER.info(ABSOLUTE_PATH);
 
         // check if all directory exists
         if (!new File(ABSOLUTE_PATH).exists()){

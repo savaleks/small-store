@@ -41,6 +41,9 @@ public class ManageController {
             if (operation.equals("product")){
                 model.addAttribute("message", "Product added to database.");
             }
+            if (operation.equals("category")){
+                model.addAttribute("message", "Category added to database.");
+            }
         }
         return "manage-product";
     }
@@ -49,9 +52,13 @@ public class ManageController {
     public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct,
                                           BindingResult result, Model model, HttpServletRequest request){
 
-        new ProductValidator().validate(mProduct, result);
-
-
+        if (mProduct.getId() == 0) {
+            new ProductValidator().validate(mProduct, result);
+        } else {
+            if (!mProduct.getFile().getOriginalFilename().equals("")){
+                new ProductValidator().validate(mProduct, result);
+            }
+        }
 
         // check if the form have error
         if (result.hasErrors()){
@@ -60,9 +67,12 @@ public class ManageController {
         }
 
         LOGGER.info(mProduct.toString());
-
-        // create a new product record
-        productService.add(mProduct);
+        // create or update the product
+        if (mProduct.getId() == 0){
+            productService.add(mProduct);
+        } else {
+            productService.update(mProduct);
+        }
 
         if (!mProduct.getFile().getOriginalFilename().equals("")){
             FileUploadUtility.uploadFile(request, mProduct.getFile(), mProduct.getCode());
@@ -71,9 +81,40 @@ public class ManageController {
         return "redirect:/manage/products?operation=product";
     }
 
+    @PostMapping("/product/{id}/activation")
+    @ResponseBody
+    public String handleProductActivation(@PathVariable("id") int id){
+        // get the product from database
+        Product product = productService.get(id);
+        boolean isActive = product.isActive();
+
+        // on or off product from datatable
+        product.setActive(!product.isActive());
+        productService.update(product);
+        return (isActive)?"You deactivated the product with id " + product.getId():
+                            "You activated the product with id " + product.getId();
+    }
+
+    @GetMapping("/{id}/product")
+    public String showEditProduct(Model model, @PathVariable String id){
+        Product newProduct = productService.get(Integer.valueOf(id));
+        model.addAttribute("product", newProduct);
+        return "manage-product";
+    }
+
+    @PostMapping("/category")
+    public String handleCategorySubmission(@ModelAttribute Category category){
+        LOGGER.info(category.getName()); // null
+        categoryService.add(category);
+        return "redirect:/manage/products?operation=category";
+    }
+
     // returning categories for all the request mapping
     @ModelAttribute("categories")
     public List<Category> getListCategory(){
         return categoryService.list();
     }
+
+    @ModelAttribute("category")
+    public Category getCategory(){return new Category();}
 }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="shared/common :: head"/>
+
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a th:href="@{'~' + ${flowExecutionUrl} + '&_eventId_home'}" class="navbar-brand"><i class="fa fa-home"></i> Home</a>
+        </div>
+    </div>
+</nav>
+<div class="container" style="margin-top: -40px;">
+    <div class="row">
+        <div class="col-lg-6 col-xl-6 mx-auto">
+
+            <div class="card card-signin flex-row my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Register - Address</h5>
+                    <form class="form-signin" method="post" id="registerForm" th:object="${billing}">
+
+                        <div class="form-label-group">
+                            <input type="text" id="inputAddressLine" class="form-control" th:field="*{addressLine}" placeholder="Address Line">
+                            <label for="inputAddressLine">Address Line</label>
+                        </div>
+
+                        <div class="form-label-group">
+                            <input type="text" id="inputCity" class="form-control" th:field="*{city}" placeholder="City">
+                            <label for="inputCity">City</label>
+                        </div>
+
+                        <div class="form-label-group">
+                            <input type="text" id="inputState" class="form-control" th:field="*{state}" placeholder="State">
+                            <label for="inputState">State</label>
+                        </div>
+
+                        <div class="form-label-group">
+                            <input type="text" id="inputCountry" class="form-control" th:field="*{country}" placeholder="Country">
+                            <label for="inputCountry">Country</label>
+                        </div>
+
+                        <div class="form-label-group">
+                            <input type="text" id="inputPostcode" class="form-control" th:field="*{postcode}" placeholder="Postcode">
+                            <label for="inputPostcode">Postcode</label>
+                        </div>
+
+                        <hr>
+
+                        <button type="submit" class="btn btn-primary" name="_eventId_personal">&Lang; Previous (Personal)</button>&#160;
+                        <button type="submit" class="btn btn-primary" name="_eventId_confirm">Next (Confirm) &Rang;</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<div th:include="shared/common :: footer"/>
+</body>
+</html>

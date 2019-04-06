@@ -45,7 +45,8 @@
                         <div class="form-group">
                             <label for="description">Product Description:</label>
                             <div>
-                                <textarea th:value="*{description}" rows="4" name="description" id="description" class="form-control"></textarea>
+                                <!-- changed th:value to th:field to fetch data from database for updating-->
+                                <textarea th:field="*{description}" rows="4" type="text" name="description" id="description" class="form-control"></textarea>
                                 <p class="help-block" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</p>
                             </div>
                         </div>
@@ -78,6 +79,13 @@
                                             th:value="${category.id}"
                                             th:text="${category.name}"></option>
                                 </select>
+                                <th:block th:if="${product.id == 0}">
+                                    <div class="text-right">
+                                        <br/>
+                                        <button type="button" data-toggle="modal" data-target="#myCategoryModal"
+                                        class="btn btn-sm btn-link">Add Category</button>
+                                    </div>
+                                </th:block>
                             </div>
                         </div>
                         <div class="form-group">
@@ -101,8 +109,9 @@
 
     <hr/>
 
-    <div class="row"
-        <div >
+    <div class="row">
+        <div class="col-sm-12">
+        <div>
              <h3>Available Products</h3>
         </div>
 
@@ -138,7 +147,46 @@
                 </table>
             </div>
         </div>
+        </div>
     </div>
+
+    <div class="modal fade" id="myCategoryModal" role="dialog" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add New Category</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:object="${category}" th:action="@{/manage/category}" method="post" class="form">
+                        <div class="form-group">
+                            <label for="cat_name" class="control-label col-md-4">Category Name</label>
+                            <div class="col-md-12">
+                                <input type="text" th:value="*{name}" name="cat_name" id="cat_name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cat_description" class="control-label col-md-4">Description</label>
+                            <div class="col-md-12">
+                                <textarea rows="3" th:field="*{description}" name="cat_description" id="cat_description" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-4 col-md-8">
+                                <input type="submit" value="Add Category" class="btn btn-primary">
+                                <input type="hidden" th:value="${category.id}"/>
+                                <input type="hidden" th:value="${category.active}"/>
+                                <input type="hidden" th:value="${category.imageURL}"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <!-- Footer -->
 <div th:include="shared/common :: footer"/>

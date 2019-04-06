@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="shared/common :: head"/>
+
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a th:href="@{'~' + ${flowExecutionUrl} + '&_eventId_home'}" class="navbar-brand"><i class="fa fa-home"></i>
+                Home</a>
+        </div>
+    </div>
+</nav>
+<div class="container" style="margin-top: -20px;">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <form method="post" th:object="${registerModel}">
+                <h2>Confirm Details</h2>
+                <hr/>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Personal Info</h3>
+                            </div>
+                            <div class="card-body">
+                                <p th:text="${registerModel.user.username}">Username: </p>
+                                <p th:text="${registerModel.user.firstName}">First Name: </p>
+                                <p th:text="${registerModel.user.lastName}">Last Name: </p>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-warning" name="_eventId_personal">&laquo; Goto
+                                    Personal
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Billing Info</h3>
+                            </div>
+                            <div class="card-body">
+                                <p th:text="${registerModel.billing.addressLine}"></p>
+                                <p th:text="${registerModel.billing.city}"></p>
+                                <p th:text="${registerModel.billing.country}"></p>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-warning" name="_eventId_billing">&laquo; Goto
+                                    Billing
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="text-center">
+                    <a th:href="@{'~' + ${flowExecutionUrl} + '&_eventId_success'}"
+                       class="btn btn-lg btn-dark">Confirm</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
