@@ -12,6 +12,7 @@ public interface UserService {
     boolean addUser(User user);
     boolean addCart(Cart cart);
     User getByEmail(String email);
+    User getByUsername(String username);
     Address getBillingAddress(User userId);
     List<Address> listShippingAddresses(User userId);
 }
