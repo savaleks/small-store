@@ -2,6 +2,7 @@ package com.savaleks.controller;
 
 import com.savaleks.model.Category;
 import com.savaleks.model.Product;
+import com.savaleks.model.User;
 import com.savaleks.service.CategoryService;
 import com.savaleks.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,8 @@ public class MainController {
     }
 
     @GetMapping("/login")
-    public String loginPage(){return "login";}
+    public String loginPage(){
+        return "login";}
 
     @GetMapping("/register")
     public String registerPage(){return "register";}

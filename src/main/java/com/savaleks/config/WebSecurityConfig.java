@@ -1,6 +1,8 @@
 package com.savaleks.config;
 
 import com.savaleks.service.UserSecurityService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +19,8 @@ import java.security.SecureRandom;
 @EnableWebSecurity
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    public static final Logger LOGGER = LoggerFactory.getLogger(WebSecurityConfig.class);
 
     @Autowired
     private Environment env;
@@ -54,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable().cors().disable()
                 .formLogin().failureUrl("/login?error")
-                .defaultSuccessUrl("/").loginPage("/home").permitAll()
+                .defaultSuccessUrl("/").loginPage("/login").permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/home?logout").deleteCookies("remember-me").permitAll()

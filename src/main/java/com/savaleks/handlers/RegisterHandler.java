@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -23,7 +23,7 @@ public class RegisterHandler {
     private UserService userService;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private BCryptPasswordEncoder passwordEncoder;
 
     public RegisterModel init() {
         return new RegisterModel();
@@ -42,13 +42,13 @@ public class RegisterHandler {
 
         // fetch the user
         User user = model.getUser();
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         if (user.getRole().equals("USER")){
             Cart cart = new Cart();
             cart.setUser(user);
             user.setCart(cart);
         }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         // save the user
         userService.addUser(user);
