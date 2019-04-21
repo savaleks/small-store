@@ -3,6 +3,7 @@ package com.savaleks.model;
 import com.savaleks.model.security.Role;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -11,11 +12,10 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter @ToString
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    @ToString.Exclude private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,21 +48,4 @@ public class User implements Serializable {
     @ManyToMany
     private Set<Role> roles;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
-                ", enabled=" + enabled +
-                ", contactNumber='" + contactNumber + '\'' +
-                ", date=" + date +
-                ", confirmPassword='" + confirmPassword + '\'' +
-                ", cart=" + cart +
-                '}';
-    }
 }
