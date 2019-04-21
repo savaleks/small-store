@@ -20,7 +20,7 @@
                     <h5 class="card-title text-center">Register</h5>
                     <form class="form-signin" method="post" id="registerForm" th:object="${user}">
 
-                        <!--add required if need validation-->
+                        <!--add 'required' for validation-->
                         <div class="form-label-group">
                             <input type="text" id="inputUsername" class="form-control" th:field="*{username}" placeholder="Username" >
                             <label for="inputUsername">Username</label>

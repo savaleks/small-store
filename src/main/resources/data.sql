@@ -26,3 +26,10 @@ INSERT INTO category(is_active, description, image_url, name)
 values (1, 'some text','pic232','Cameras');
 INSERT INTO category(is_active, description, image_url, name)
 values (0, 'some text','pic282','MicroCD');
+
+INSERT INTO role(id, name)
+values (1, 'ROLE_USER');
+INSERT INTO role(id, name)
+values (2, 'ROLE_SUPPLIER');
+INSERT INTO role(id, name)
+values (3, 'ROLE_ADMIN');

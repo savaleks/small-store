@@ -11,6 +11,7 @@ public interface UserService {
     boolean addAddress(Address address);
     boolean addUser(User user);
     boolean addCart(Cart cart);
+//    boolean hasRole(String role);
     User getByEmail(String email);
     User getByUsername(String username);
     Address getBillingAddress(User userId);

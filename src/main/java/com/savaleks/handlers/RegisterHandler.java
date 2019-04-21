@@ -5,6 +5,8 @@ import com.savaleks.model.Address;
 import com.savaleks.model.Cart;
 import com.savaleks.model.User;
 import com.savaleks.model.RegisterModel;
+import com.savaleks.model.security.Role;
+import com.savaleks.repository.RoleRepository;
 import com.savaleks.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,13 +16,19 @@ import org.springframework.binding.message.MessageContext;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
+import java.util.HashSet;
+
 @Component
 public class RegisterHandler {
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(RegisterHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RegisterHandler.class);
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -47,7 +55,16 @@ public class RegisterHandler {
             Cart cart = new Cart();
             cart.setUser(user);
             user.setCart(cart);
+            user.setRoles(new HashSet<Role>(Collections.singleton(roleRepository.findByName("ROLE_USER"))));
         }
+
+        if (user.getRole().equals("SUPPLIER")){
+            Cart cart = new Cart();
+            cart.setUser(user);
+            user.setCart(cart);
+            user.setRoles(new HashSet<Role>(Collections.singleton(roleRepository.findByName("ROLE_SUPPLIER"))));
+        }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         // save the user
