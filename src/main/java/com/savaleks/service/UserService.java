@@ -16,4 +16,6 @@ public interface UserService {
     User getByUsername(String username);
     Address getBillingAddress(User userId);
     List<Address> listShippingAddresses(User userId);
+
+    User findByUsername(String username);
 }

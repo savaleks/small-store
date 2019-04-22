@@ -1,15 +1,11 @@
 package com.savaleks.handlers;
 
-
 import com.savaleks.model.Address;
 import com.savaleks.model.Cart;
 import com.savaleks.model.User;
 import com.savaleks.model.RegisterModel;
-import com.savaleks.model.security.Role;
 import com.savaleks.repository.RoleRepository;
 import com.savaleks.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
@@ -21,8 +17,6 @@ import java.util.HashSet;
 
 @Component
 public class RegisterHandler {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(RegisterHandler.class);
 
     @Autowired
     private UserService userService;
@@ -55,14 +49,14 @@ public class RegisterHandler {
             Cart cart = new Cart();
             cart.setUser(user);
             user.setCart(cart);
-            user.setRoles(new HashSet<Role>(Collections.singleton(roleRepository.findByName("ROLE_USER"))));
+            user.setRoles(new HashSet<>(Collections.singleton(roleRepository.findByName("ROLE_USER"))));
         }
 
         if (user.getRole().equals("SUPPLIER")){
             Cart cart = new Cart();
             cart.setUser(user);
             user.setCart(cart);
-            user.setRoles(new HashSet<Role>(Collections.singleton(roleRepository.findByName("ROLE_SUPPLIER"))));
+            user.setRoles(new HashSet<>(Collections.singleton(roleRepository.findByName("ROLE_SUPPLIER"))));
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));

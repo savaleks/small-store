@@ -63,4 +63,9 @@ public class UserServiceImpl implements UserService {
     public List<Address> listShippingAddresses(User userId) {
         return addressRepository.listShippingAddresses(userId);
     }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 }

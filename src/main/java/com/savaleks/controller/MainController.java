@@ -2,7 +2,6 @@ package com.savaleks.controller;
 
 import com.savaleks.model.Category;
 import com.savaleks.model.Product;
-import com.savaleks.model.User;
 import com.savaleks.service.CategoryService;
 import com.savaleks.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,14 @@ public class MainController {
     }
 
     @GetMapping("/login")
-    public String loginPage(){
+    public String loginPage(Model model, String error, String logout){
+
+        if (error != null)
+            model.addAttribute("error", "Your username or password is invalid.");
+
+        if (logout != null)
+            model.addAttribute("message", "You have been logged out successfully.");
+
         return "login";}
 
     @GetMapping("/register")
