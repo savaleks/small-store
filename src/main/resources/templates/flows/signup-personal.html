@@ -56,13 +56,11 @@
                         <div class="form-label-group">
                             <input type="password" id="inputPassword" th:field="*{password}" class="form-control" placeholder="Password" >
                             <label for="inputPassword">Password</label>
-                            <small class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
                         </div>
 
                         <div class="form-label-group">
                             <input th:field="*{confirmPassword}" type="password" class="form-control" id="confirmPassword" placeholder="Re-enter password" />
                             <label for="confirmPassword">Confirm password</label>
-                            <small class="form-text text-danger" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></small>
                         </div>
 
                         <div class="form-label-group">
