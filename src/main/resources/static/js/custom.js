@@ -2,6 +2,17 @@
 // DataTables
 $(document).ready(function () {
 
+    // the csrf token
+    $(function () {
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+        if (token.length > 0 && header.length > 0) {
+            $(document).ajaxSend(function (e, xhr, options) {
+                xhr.setRequestHeader(header, token);
+            });
+        }
+    });
+
     var jsonUrl = '';
         if (window.categoryId == ''){
             jsonUrl = /*[[@{/json/data/all/products}]]*/ '/json/data/all/products';

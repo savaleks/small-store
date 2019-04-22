@@ -9,9 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-<!--    <meta name="_csrf" content="${_csrf.token}"/>-->
-<!--    &lt;!&ndash; default header name is X-CSRF-TOKEN &ndash;&gt;-->
-<!--    <meta name="_csrf_header" content="${_csrf.headerName}"/>-->
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 
     <title>Shop Homepage - Bootstrap Template</title>
 

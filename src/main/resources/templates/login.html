@@ -32,6 +32,8 @@
                             <!--                            <input type="checkbox" class="custom-control-input" id="customCheck1">-->
                             <!--                            <label class="custom-control-label" for="customCheck1">Remember password</label>-->
                             <!--                        </div>-->
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button>
                             <hr class="my-4">
                             <a th:href="@{/register}" class="btn btn-lg btn-facebook btn-block text-uppercase"
