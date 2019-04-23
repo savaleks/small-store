@@ -69,6 +69,16 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/register}">Register</a>
                     </li>
+                    <li class="dropdown">
+                        <a class="nav-link btn btn-default dropdown-toggle" href="javascript:void(0)"
+                           id="dropdownMenu" data-toggle="dropdown">Full Name<span class="caret"></span></a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a th:href="@{/cart}" class="dropdown-item"><i class="fa fa-shopping-cart"></i>
+                            <span class="badge">0</span> &#8364; 0.0</a>
+                            <div class="dropdown-divider" role="separator"></div>
+                            <a th:href="@{/logout}" class="dropdown-item">Logout</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
