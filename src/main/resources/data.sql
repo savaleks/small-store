@@ -1,7 +1,7 @@
 INSERT INTO user(email, is_enabled, first_name, last_name, password, role, username, date, contact_number)
-values ('admin@mail.com',0,'admin','admin', '$12$rsbXuaMWQMSUjMQlqTAay.uzYxzNTefrTos0LAd0pgMwAyMCnNfCu', 'ADMIN', 'admin', CURRENT_TIMESTAMP(),'123456789');
+values ('admin@mail.com',1,'admin','admin', '$12$rsbXuaMWQMSUjMQlqTAay.uzYxzNTefrTos0LAd0pgMwAyMCnNfCu', 'ADMIN', 'admin', CURRENT_TIMESTAMP(),'123456789');
 INSERT INTO user(email, is_enabled, first_name, last_name, password, role, username, date, contact_number)
-values ('alex@mail.com',0,'alex','sky', '$12$rsbXuaMWQMSUjMQlqTAay.uzYxzNTefrTos0LAd0pgMwAyMCnNfCu', 'USER', 'alex', CURRENT_TIMESTAMP(),'11111111');
+values ('alex@mail.com',1,'alex','sky', '$12$rsbXuaMWQMSUjMQlqTAay.uzYxzNTefrTos0LAd0pgMwAyMCnNfCu', 'USER', 'alex', CURRENT_TIMESTAMP(),'11111111');
 INSERT INTO user(email, is_enabled, first_name, last_name, password, role, username, date, contact_number)
 values ('al@mail.com',0,'alex','johnson', '$12$rsbXuaMWQMSUjMQlqTAay.uzYxzNTefrTos0LAd0pgMwAyMCnNfCu', 'SUPPLIER', 'john', CURRENT_TIMESTAMP(),'132412412');
 
@@ -33,3 +33,6 @@ INSERT INTO role(id, name)
 values (2, 'ROLE_SUPPLIER');
 INSERT INTO role(id, name)
 values (3, 'ROLE_ADMIN');
+
+INSERT INTO user_roles(users_id, roles_id)
+values (1, 3);

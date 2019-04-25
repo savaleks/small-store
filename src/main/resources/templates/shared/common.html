@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <!--Head-->
 <head th:fragment="head">
@@ -63,22 +64,34 @@
                     <li class="nav-item">
                         <a class="nav-link" id="contact" href="#">Contact</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/login}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/register}">Register</a>
-                    </li>
-                    <li class="dropdown">
-                        <a class="nav-link btn btn-default dropdown-toggle" href="javascript:void(0)"
-                           id="dropdownMenu" data-toggle="dropdown">Full Name<span class="caret"></span></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a th:href="@{/cart}" class="dropdown-item"><i class="fa fa-shopping-cart"></i>
-                            <span class="badge">0</span> &#8364; 0.0</a>
-                            <div class="dropdown-divider" role="separator"></div>
-                            <a th:href="@{/logout}" class="dropdown-item">Logout</a>
-                        </div>
-                    </li>
+
+                    <!--To display a block for anonymous users-->
+                    <th:block th:if="!${#request.userPrincipal}">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/login}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/register}">Register</a>
+                        </li>
+                    </th:block>
+
+                    <th:block th:if="${#request.userPrincipal}">
+                        <li class="dropdown">
+                            <a class="nav-link btn btn-default dropdown-toggle" href="javascript:void(0)"
+                               id="dropdownMenu" data-toggle="dropdown" th:text="${userFullName}">
+                                Full Name <span class="caret"></span></a>
+
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <th:block sec:authorize="hasAuthority('USER')">
+                                    <a th:href="@{/cart}" class="dropdown-item"><i class="fa fa-shopping-cart"></i>
+                                        <span class="badge" th:text="${cartLines}"></span> &#8364; <span
+                                                th:text="${grandTotal}"></span></a>
+                                    <div class="dropdown-divider" role="separator"></div>
+                                </th:block>
+                                <a th:href="@{/logout}" class="dropdown-item">Logout</a>
+                            </div>
+                        </li>
+                    </th:block>
                 </ul>
             </div>
         </div>

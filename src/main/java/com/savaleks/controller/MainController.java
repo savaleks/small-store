@@ -76,4 +76,9 @@ public class MainController {
         return "single-product";
     }
 
+    @GetMapping("/access-denied")
+    public String accessDeniedPage(){
+        return "error";
+    }
+
 }

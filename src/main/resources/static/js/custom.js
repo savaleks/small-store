@@ -3,6 +3,7 @@
 $(document).ready(function () {
 
     // the csrf token
+
     $(function () {
         var token = $("meta[name='_csrf']").attr("content");
         var header = $("meta[name='_csrf_header']").attr("content");
@@ -12,6 +13,8 @@ $(document).ready(function () {
             });
         }
     });
+
+    // product management
 
     var jsonUrl = '';
         if (window.categoryId == ''){
@@ -55,6 +58,7 @@ $(document).ready(function () {
     });
 
     //dismissing the alert after 3 seconds
+
     var $alert = $('.alert');
         if ($alert.length){
             setTimeout(function () {
@@ -63,6 +67,7 @@ $(document).ready(function () {
         }
 
     // bootbox for activate and deactivate button
+
     $('.switch input[type="checkbox"]').on('change', function () {
        var checkbox = $(this);
        var checked = checkbox.prop('checked');
@@ -92,6 +97,7 @@ $(document).ready(function () {
     //===================
 
     // DataTable for admin
+
     var jsonUrl = /*[[@{/json/data/admin/all/products}]]*/ '/json/data/admin/all/products';
 
     var adminProductsTable = $('#adminProductsTable').DataTable({
@@ -165,12 +171,4 @@ $(document).ready(function () {
             });
         }
     });
-
-    // $(function () {
-    //     var token = $("meta[name='_csrf']").attr("content");
-    //     var header = $("meta[name='_csrf_header']").attr("content");
-    //     $(document).ajaxSend(function(e, xhr, options) {
-    //         xhr.setRequestHeader(header, token);
-    //     });
-    // });
 });
