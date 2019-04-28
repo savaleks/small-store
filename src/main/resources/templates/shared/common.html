@@ -82,7 +82,7 @@
                                 Full Name <span class="caret"></span></a>
 
                             <div class="dropdown-menu dropdown-menu-right">
-                                <th:block sec:authorize="hasAuthority('USER')">
+                                <th:block th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}">
                                     <a th:href="@{/cart}" class="dropdown-item"><i class="fa fa-shopping-cart"></i>
                                         <span class="badge" th:text="${cartLines}"></span> &#8364; <span
                                                 th:text="${grandTotal}"></span></a>
