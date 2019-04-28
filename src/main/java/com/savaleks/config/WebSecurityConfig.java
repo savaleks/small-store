@@ -57,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/").loginPage("/login").permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/home?logout").deleteCookies("remember-me").permitAll()
+                .logoutSuccessUrl("/?logout").deleteCookies("remember-me").permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/access-denied")
                 .and().rememberMe();
