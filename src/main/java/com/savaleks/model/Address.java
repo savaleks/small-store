@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Getter @Setter @ToString
 public class Address implements Serializable {
 
-    @ToString.Exclude public static final long serialVersionUID = 1L;
+    public static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
