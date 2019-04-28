@@ -3,6 +3,7 @@ package com.savaleks.controller;
 import com.savaleks.model.User;
 import com.savaleks.model.UserModel;
 import com.savaleks.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpSession;
 
+@Slf4j
 @ControllerAdvice
 public class GlobalController {
 
@@ -41,6 +43,9 @@ public class GlobalController {
                     model.addAttribute("grandTotal", userModel.getCart().getGrandTotal());
                 }
                 model.addAttribute("userFullName", userModel.getFullName());
+                // for script
+                model.addAttribute("role", userModel.getRole());
+                log.info("user role {}", userModel.getRole());
                 return userModel;
             }
         }

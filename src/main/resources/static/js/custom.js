@@ -50,7 +50,12 @@ $(document).ready(function () {
                     if (row.quantity < 1){
                         str += '<a href="javascript:void(0)" class="btn btn-success btn-sm disabled">Add to Cart</a>';
                     } else {
-                        str += '<a href="/cart/add/'+data+'/product" class="btn btn-success btn-sm">Add to Cart</a>';
+                        // variable from page 'common.html'
+                        if (userRole){
+                            str += '<a href="/manage/'+data+'/product" class="btn btn-success btn-sm">Edit</a>';
+                        } else {
+                            str += '<a href="/cart/add/'+data+'/product" class="btn btn-success btn-sm">Add to Cart</a>';
+                        }
                     }
                     return str;
                 }}

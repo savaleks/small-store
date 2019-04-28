@@ -45,11 +45,20 @@
                 <h6>Qty. Available: <span th:text="${product.quantity}"></span></h6>
             </th:block>
 
+            <th:block th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}">
             <th:block th:if="${product.quantity < 1}">
                 <a href="javascript:void(0)" class="btn btn-success disabled"><strike>Add to Cart</strike></a>
             </th:block>
+
             <th:block th:if="${product.quantity > 0}">
                 <a th:href="@{'/cart/add/' + ${product.id} + '/product'}" class="btn btn-success">Add to Cart</a>
+            </th:block>
+            </th:block>
+
+            <th:block th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN')}">
+                <th:block th:if="${product.quantity > 0}">
+                    <a th:href="@{'/manage/' + ${product.id} + '/product'}" class="btn btn-success">Edit</a>
+                </th:block>
             </th:block>
 
             <a th:href="@{/show/all/products}" class="btn btn-dark">Back</a>
