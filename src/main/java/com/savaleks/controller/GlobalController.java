@@ -25,29 +25,23 @@ public class GlobalController {
 
     private UserModel userModel = null;
 
-    @ModelAttribute("userModel")
-    public UserModel getUserModel(Model model){
-        if (httpSession.getAttribute("userModel") == null){
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            User user = userService.getByUsername(authentication.getName());
-            if (user != null){
+    @ModelAttribute
+    public UserModel getUserModel() {
+        if (httpSession.getAttribute("userModel") == null) {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user = userService.getByUsername(auth.getName());
+            if (user != null) {
                 userModel = new UserModel();
                 userModel.setId(Math.toIntExact(user.getId()));
                 userModel.setEmail(user.getEmail());
                 userModel.setRole(user.getRole());
                 userModel.setFullName(user.getFirstName() + " " + user.getLastName());
-                // set the cart if user is a buyer
-                if (userModel.getRole().equals("USER")){
+                if (userModel.getRole().equals("USER")) {
                     userModel.setCart(user.getCart());
-                    model.addAttribute("cartLines", userModel.getCart().getCartLines());
-                    model.addAttribute("grandTotal", userModel.getCart().getGrandTotal());
                 }
-                model.addAttribute("userFullName", userModel.getFullName());
-                // for script
-                model.addAttribute("role", userModel.getRole());
-                log.info("user role {}", userModel.getRole());
-                return userModel;
             }
+            httpSession.setAttribute("userModel", userModel);
+            return userModel;
         }
         return (UserModel) httpSession.getAttribute("userModel");
     }

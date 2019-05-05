@@ -259,3 +259,12 @@ input:checked + .slider:before {
 #emptyCart {
     margin-top: 40px;
 }
+
+/*.cartImg {*/
+/*    width: 100px;*/
+/*    height: 100px;*/
+/*}*/
+
+.unavailable {
+    color: red;
+}

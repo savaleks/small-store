@@ -6,11 +6,13 @@ import com.savaleks.repository.CartLineRepository;
 import com.savaleks.repository.CartRepository;
 import com.savaleks.service.CartLineService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Transactional
+@Service
 public class CartLineServiceImpl implements CartLineService {
 
     @Autowired

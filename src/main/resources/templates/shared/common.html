@@ -84,16 +84,16 @@
                     </th:block>
 
                     <th:block th:if="${#request.userPrincipal}">
-                        <li class="dropdown">
+                        <li class="dropdown" id="userCart">
                             <a class="nav-link btn btn-default dropdown-toggle" href="javascript:void(0)"
-                               id="dropdownMenu" data-toggle="dropdown" th:text="${userFullName}">
+                               id="dropdownMenu" data-toggle="dropdown" th:text="${userModel.fullName}">
                                 Full Name <span class="caret"></span></a>
 
                             <div class="dropdown-menu dropdown-menu-right">
                                 <th:block th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}">
                                     <a th:href="@{/cart/show}" class="dropdown-item"><i class="fa fa-shopping-cart"></i>
-                                        <span class="badge" th:text="${cartLines}"></span> &#8364; <span
-                                                th:text="${grandTotal}"></span></a>
+                                        <span class="badge" th:text="${userModel.cart.cartLines}"></span> &#8364; <span
+                                                th:text="${userModel.cart.grandTotal}"></span></a>
                                     <div class="dropdown-divider" role="separator"></div>
                                 </th:block>
                                 <a th:href="@{/logout}" class="dropdown-item">Logout</a>
