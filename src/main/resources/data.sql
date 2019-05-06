@@ -36,3 +36,6 @@ values (3, 'ROLE_ADMIN');
 
 INSERT INTO user_roles(users_id, roles_id)
 values (1, 3);
+
+INSERT INTO cart_line(id, is_available, buying_price, cart_id, product_count, total, product_id)
+values (1, 1, 250.12, 1, 2, 500.24, 3);
