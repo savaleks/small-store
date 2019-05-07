@@ -224,32 +224,32 @@ input:checked + .slider:before {
     background-clip: padding-box
 }
 
-.quantity .minus, .quantity .plus {
-    line-height: 0;
-    background-clip: padding-box;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    -webkit-background-size: 6px 30px;
-    -moz-background-size: 6px 30px;
-    color: #bbb;
-    font-size: 20px;
-    position: absolute;
-    height: 50%;
-    border: 0;
-    right: 0;
-    padding: 0;
-    width: 25px;
-    z-index: 3
-}
+/*.quantity .minus, .quantity .plus {*/
+/*    line-height: 0;*/
+/*    background-clip: padding-box;*/
+/*    -webkit-border-radius: 0;*/
+/*    -moz-border-radius: 0;*/
+/*    border-radius: 0;*/
+/*    -webkit-background-size: 6px 30px;*/
+/*    -moz-background-size: 6px 30px;*/
+/*    color: #bbb;*/
+/*    font-size: 20px;*/
+/*    position: absolute;*/
+/*    height: 50%;*/
+/*    border: 0;*/
+/*    right: 0;*/
+/*    padding: 0;*/
+/*    width: 25px;*/
+/*    z-index: 3*/
+/*}*/
 
-.quantity .minus:hover, .quantity .plus:hover {
-    background-color: #dad8da
-}
+/*.quantity .minus:hover, .quantity .plus:hover {*/
+/*    background-color: #dad8da*/
+/*}*/
 
-.quantity .minus {
-    bottom: 0
-}
+/*.quantity .minus {*/
+/*    bottom: 0*/
+/*}*/
 .shopping-cart {
     margin-top: 20px;
 }
@@ -259,11 +259,6 @@ input:checked + .slider:before {
 #emptyCart {
     margin-top: 40px;
 }
-
-/*.cartImg {*/
-/*    width: 100px;*/
-/*    height: 100px;*/
-/*}*/
 
 .unavailable {
     color: red;

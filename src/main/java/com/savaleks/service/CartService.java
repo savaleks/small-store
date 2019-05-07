@@ -2,6 +2,7 @@ package com.savaleks.service;
 
 import com.savaleks.model.Cart;
 import com.savaleks.model.CartLine;
+import com.savaleks.model.Product;
 import com.savaleks.model.UserModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,27 @@ public class CartService {
     public List<CartLine> getCartLines(){
         Cart cart = this.getCart();
         return cartLineService.list(cart.getId());
+    }
+
+    public String updateCartLine(int cartLineId, int count) {
+        CartLine cartLine = cartLineService.get(cartLineId);
+        if (cartLine == null){
+            return "result-error";
+        } else {
+            Product product = cartLine.getProduct();
+            double oldTotal = cartLine.getTotal();
+            if (product.getQuantity() <= count){
+                count = product.getQuantity();
+            }
+            cartLine.setProductCount(count);
+            cartLine.setBuyingPrice(product.getUnitPrice().doubleValue());
+            cartLine.setTotal(product.getUnitPrice().doubleValue() * count);
+            cartLineService.update(cartLine);
+            Cart cart = this.getCart();
+            cart.setGrandTotal(cart.getGrandTotal() - oldTotal + cartLine.getTotal());
+            cartLineService.updateCart(cart);
+
+            return "result=updated";
+        }
     }
 }
