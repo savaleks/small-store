@@ -57,9 +57,9 @@
                                 </div>
                             </div>
                             <div class="col-2 col-sm-2 col-md-2 text-right">
-                                <button type="button" class="btn btn-outline-danger btn-xs">
+                                <a th:href="@{'/cart/' + ${cartLine.id} + '/delete'}" type="button" class="btn btn-outline-danger btn-xs">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -73,6 +73,7 @@
                     </button>
                 </div>
                 </th:block>
+
             </div>
             <div class="card-footer">
                 <div class="coupon col-md-5 col-sm-5 no-padding-left pull-left">
@@ -96,14 +97,14 @@
 
     </th:block>
 
-    <th:block th:if="${cartLines == null}">
+<!--    <th:block th:if="${cartLines == null}">-->
 
-        <div class="jumbotron" id="emptyCart">
-            <div class="text-center">
-                <h1>Your cart is empty.</h1>
-            </div>
-        </div>
-    </th:block>
+<!--        <div class="jumbotron" id="emptyCart">-->
+<!--            <div class="text-center">-->
+<!--                <h1>Your cart is empty.</h1>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </th:block>-->
 </div>
 
 <!-- Bootstrap core JavaScript Libraries -->

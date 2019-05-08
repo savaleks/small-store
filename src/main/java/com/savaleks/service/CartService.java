@@ -32,10 +32,11 @@ public class CartService {
         return cartLineService.list(cart.getId());
     }
 
+    // updating cartLine -> count and price
     public String updateCartLine(int cartLineId, int count) {
         CartLine cartLine = cartLineService.get(cartLineId);
         if (cartLine == null){
-            return "result-error";
+            return "result=error";
         } else {
             Product product = cartLine.getProduct();
             double oldTotal = cartLine.getTotal();
@@ -51,6 +52,22 @@ public class CartService {
             cartLineService.updateCart(cart);
 
             return "result=updated";
+        }
+    }
+
+    public String deleteCartLine(int cartLineId) {
+        CartLine cartLine = cartLineService.get(cartLineId);
+        if (cartLine == null){
+            return "result=error";
+        } else {
+            Cart cart = this.getCart();
+            cart.setGrandTotal(cart.getGrandTotal() - cartLine.getTotal());
+            cart.setCartLines(cart.getCartLines() - 1);
+            cartLineService.updateCart(cart);
+
+            // remove cartLine
+            cartLineService.delete(cartLine);
+            return "result=deleted";
         }
     }
 }
