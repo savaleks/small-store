@@ -23,6 +23,9 @@ public class CartController {
                 case "deleted":
                     model.addAttribute("message", "CartLine has been deleted!");
                     break;
+                case "added":
+                    model.addAttribute("message", "CartLine has been added!");
+                    break;
                 case "error":
                     model.addAttribute("message", "Something went wrong!");
                     break;
@@ -42,6 +45,12 @@ public class CartController {
     @RequestMapping("/{cartLineId}/delete")
     public String deleteCart(@PathVariable int cartLineId){
         String response = cartService.deleteCartLine(cartLineId);
+        return "redirect:/cart/show?" + response;
+    }
+
+    @RequestMapping("/add/{productId}/product")
+    public String addToCart(@PathVariable int productId){
+        String response = cartService.addCartLine(productId);
         return "redirect:/cart/show?" + response;
     }
 }

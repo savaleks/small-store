@@ -17,7 +17,7 @@ public interface CartLineRepository extends CrudRepository<CartLine, Integer> {
     @Modifying
     @Query("SELECT t FROM CartLine t WHERE t.cartId = :cartId AND t.available = 1")
     List<CartLine> listAvailable(int cartId);
-    @Modifying
+
     @Query("SELECT t FROM CartLine t WHERE t.cartId = :cartId AND t.product.id = :productId")
     CartLine getByCartAndProduct(int cartId, int productId);
 }

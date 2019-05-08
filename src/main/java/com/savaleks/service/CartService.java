@@ -19,6 +19,9 @@ public class CartService {
     private CartLineService cartLineService;
 
     @Autowired
+    private ProductService productService;
+
+    @Autowired
     private HttpSession httpSession;
 
     // get the cart of the user who has logged in
@@ -69,5 +72,34 @@ public class CartService {
             cartLineService.delete(cartLine);
             return "result=deleted";
         }
+    }
+
+    public String addCartLine(int productId) {
+        String response = null;
+        Cart cart = this.getCart();
+        CartLine cartLine = cartLineService.getByCartAndProduct(cart.getId(), productId);
+        if (cartLine == null){
+            // add new cartLine
+            cartLine = new CartLine();
+            // get the product
+            Product product = productService.get(productId);
+            cartLine.setCartId(cart.getId());
+            cartLine.setProduct(product);
+            cartLine.setBuyingPrice(product.getUnitPrice().doubleValue());
+            cartLine.setProductCount(1);
+            cartLine.setTotal(product.getUnitPrice().doubleValue());
+            cartLine.setAvailable(true);
+
+            cartLineService.add(cartLine);
+
+            cart.setCartLines(cart.getCartLines() + 1);
+            cart.setGrandTotal(cart.getGrandTotal() + cartLine.getTotal());
+
+            cartLineService.updateCart(cart);
+
+            response = "result=added";
+        }
+
+        return response;
     }
 }
