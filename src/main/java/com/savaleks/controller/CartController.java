@@ -26,6 +26,12 @@ public class CartController {
                 case "added":
                     model.addAttribute("message", "CartLine has been added!");
                     break;
+                case "maximum":
+                    model.addAttribute("message", "CartLine has reached maximum count!");
+                    break;
+                case "unavailable":
+                    model.addAttribute("message", "Product quantity is not available!");
+                    break;
                 case "error":
                     model.addAttribute("message", "Something went wrong!");
                     break;
@@ -37,7 +43,7 @@ public class CartController {
 
     @RequestMapping("/{cartLineId}/update")
     public String updateCart(@PathVariable int cartLineId, @RequestParam int count){
-        String response = cartService.updateCartLine(cartLineId, count);
+        String response = cartService.manageCartLine(cartLineId, count);
 
         return "redirect:/cart/show?" + response;
     }

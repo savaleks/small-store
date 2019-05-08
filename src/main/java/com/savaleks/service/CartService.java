@@ -36,16 +36,19 @@ public class CartService {
     }
 
     // updating cartLine -> count and price
-    public String updateCartLine(int cartLineId, int count) {
+    public String manageCartLine(int cartLineId, int count) {
         CartLine cartLine = cartLineService.get(cartLineId);
         if (cartLine == null){
             return "result=error";
         } else {
             Product product = cartLine.getProduct();
             double oldTotal = cartLine.getTotal();
-            if (product.getQuantity() <= count){
-                count = product.getQuantity();
+
+            // checking if the product is available
+            if (product.getQuantity() < count){
+                return "result=unavailable";
             }
+
             cartLine.setProductCount(count);
             cartLine.setBuyingPrice(product.getUnitPrice().doubleValue());
             cartLine.setTotal(product.getUnitPrice().doubleValue() * count);
@@ -89,17 +92,20 @@ public class CartService {
             cartLine.setProductCount(1);
             cartLine.setTotal(product.getUnitPrice().doubleValue());
             cartLine.setAvailable(true);
-
             cartLineService.add(cartLine);
 
             cart.setCartLines(cart.getCartLines() + 1);
             cart.setGrandTotal(cart.getGrandTotal() + cartLine.getTotal());
-
             cartLineService.updateCart(cart);
-
             response = "result=added";
-        }
 
+        } else {
+            if (cartLine.getProductCount() < 3){
+                response = this.manageCartLine(cartLine.getId(), cartLine.getProductCount() + 1);
+            } else {
+                response = "result=maximum";
+            }
+        }
         return response;
     }
 }
